@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Namespace for the minimal set of Ticketmaster response DTOs used by the app.
+ * The file is organized into event-search DTOs first and classification DTOs second.
+ */
 public final class TicketmasterResponses {
 
     private TicketmasterResponses() {

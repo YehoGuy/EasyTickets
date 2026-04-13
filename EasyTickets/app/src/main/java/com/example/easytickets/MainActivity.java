@@ -13,6 +13,11 @@ import com.example.easytickets.databinding.ActivityMainBinding;
 import com.example.easytickets.databinding.ActivitySetupRequiredBinding;
 import com.example.easytickets.di.AppContainer;
 
+/**
+ * Single activity host for the app.
+ * It enables edge-to-edge rendering, validates local API key configuration,
+ * and either shows the setup-required screen or the fragment navigation host.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

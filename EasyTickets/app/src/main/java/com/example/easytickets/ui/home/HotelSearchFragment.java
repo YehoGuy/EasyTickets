@@ -30,6 +30,11 @@ import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Home-screen child fragment for hotel-based searches.
+ * It manages hotel autocomplete, selected-hotel presentation, category/radius filters,
+ * and {@link SearchRequest} creation for nearby event queries.
+ */
 public class HotelSearchFragment extends BaseEasyTicketsFragment {
 
     private static final long AUTOCOMPLETE_DELAY_MS = 350L;

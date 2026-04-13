@@ -6,6 +6,9 @@ import com.example.easytickets.domain.model.PlaceSuggestion;
 
 import java.util.List;
 
+/**
+ * Abstraction over place search and place-details lookup used by the hotel and city flows.
+ */
 public interface PlacesRepository {
 
     void searchHotels(String query, RepositoryCallback<List<PlaceSuggestion>> callback);

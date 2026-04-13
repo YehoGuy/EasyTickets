@@ -6,6 +6,10 @@ import com.example.easytickets.util.DistanceUnitResolver;
 
 import org.junit.Test;
 
+/**
+ * Unit tests for {@link DistanceUnitResolver} covering country-based unit selection and
+ * chip label formatting.
+ */
 public class DistanceUnitResolverTest {
 
     private final DistanceUnitResolver distanceUnitResolver = new DistanceUnitResolver();

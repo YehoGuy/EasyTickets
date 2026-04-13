@@ -28,6 +28,11 @@ import com.example.easytickets.ui.common.PlaceSuggestionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Home-screen child fragment for city-based searches.
+ * It owns city autocomplete, selected-city presentation, category filters,
+ * and {@link SearchRequest} creation for the city flow.
+ */
 public class CitySearchFragment extends BaseEasyTicketsFragment {
 
     private static final long AUTOCOMPLETE_DELAY_MS = 350L;

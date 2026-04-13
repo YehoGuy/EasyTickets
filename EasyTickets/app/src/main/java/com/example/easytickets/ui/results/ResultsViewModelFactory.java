@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easytickets.di.AppContainer;
 
+/**
+ * Factory that supplies Ticketmaster repository dependencies to {@link ResultsViewModel}.
+ */
 public class ResultsViewModelFactory implements ViewModelProvider.Factory {
 
     private final AppContainer appContainer;

@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easytickets.di.AppContainer;
 
+/**
+ * Factory that wires the shared home dependencies into {@link HomeViewModel} instances.
+ */
 public class HomeViewModelFactory implements ViewModelProvider.Factory {
 
     private final AppContainer appContainer;

@@ -2,6 +2,10 @@ package com.example.easytickets.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * Normalized search payload passed from the home flow to the results flow.
+ * It captures the chosen search mode, origin information, market context, and any filters.
+ */
 public class SearchRequest implements Serializable {
 
     private final SearchMode searchMode;

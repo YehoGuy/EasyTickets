@@ -14,6 +14,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Unit tests for {@link TicketmasterMapper} covering optional-field handling and
+ * top-level category extraction.
+ */
 public class TicketmasterMapperTest {
 
     private final TicketmasterMapper mapper = new TicketmasterMapper();

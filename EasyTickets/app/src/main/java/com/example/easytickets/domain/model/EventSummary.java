@@ -2,6 +2,10 @@ package com.example.easytickets.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * Flattened event model used across the app.
+ * It combines event, venue, image, and coordinate data into a serializable UI-safe structure.
+ */
 public class EventSummary implements Serializable {
 
     private final String id;

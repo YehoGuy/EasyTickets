@@ -10,6 +10,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Builds Ticketmaster query parameters from the normalized {@link SearchRequest} model.
+ * The logic branches between city searches and nearby geoPoint searches while applying
+ * category and radius filters.
+ */
 public class TicketmasterQueryFactory {
 
     public Map<String, String> buildEventSearchQuery(SearchRequest request) {

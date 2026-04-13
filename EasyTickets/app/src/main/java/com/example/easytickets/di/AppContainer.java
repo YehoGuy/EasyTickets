@@ -26,6 +26,11 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Central composition root for the app.
+ * It validates configuration and constructs the shared repositories, network stack,
+ * Places client, and location provider used across fragments and view models.
+ */
 public class AppContainer {
 
     private static final String TICKETMASTER_BASE_URL = "https://app.ticketmaster.com/discovery/v2/";

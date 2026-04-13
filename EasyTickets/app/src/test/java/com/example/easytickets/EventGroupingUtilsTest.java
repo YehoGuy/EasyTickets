@@ -12,6 +12,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Unit tests for {@link EventGroupingUtils} covering venue-ID grouping and coordinate fallback grouping.
+ */
 public class EventGroupingUtilsTest {
 
     @Test

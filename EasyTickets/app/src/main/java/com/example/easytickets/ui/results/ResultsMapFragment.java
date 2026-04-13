@@ -35,6 +35,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Results screen that executes the search, renders the origin and grouped event markers,
+ * and opens the event bottom sheet/details flow.
+ */
 public class ResultsMapFragment extends BaseEasyTicketsFragment implements OnMapReadyCallback {
 
     private FragmentResultsMapBinding binding;

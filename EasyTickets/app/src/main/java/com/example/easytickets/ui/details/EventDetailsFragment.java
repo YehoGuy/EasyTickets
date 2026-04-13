@@ -18,6 +18,10 @@ import com.example.easytickets.domain.model.EventDetails;
 import com.example.easytickets.domain.model.EventSummary;
 import com.example.easytickets.ui.common.BaseEasyTicketsFragment;
 
+/**
+ * Details screen for a single event selected from the results map.
+ * It binds the serializable event model into the header/cards UI and launches the external URL.
+ */
 public class EventDetailsFragment extends BaseEasyTicketsFragment {
 
     public static final String ARG_EVENT_DETAILS = "arg_event_details";

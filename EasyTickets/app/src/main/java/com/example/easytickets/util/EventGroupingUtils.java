@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Utility for collapsing raw event results into map marker groups.
+ * The algorithm prefers stable venue IDs and falls back to rounded coordinates plus venue name.
+ */
 public final class EventGroupingUtils {
 
     private EventGroupingUtils() {

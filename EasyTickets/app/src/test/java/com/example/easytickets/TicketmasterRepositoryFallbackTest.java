@@ -12,6 +12,9 @@ import org.junit.Test;
 
 import java.util.List;
 
+/**
+ * Unit test covering the built-in fallback category list exposed by {@link TicketmasterRepositoryImpl}.
+ */
 public class TicketmasterRepositoryFallbackTest {
 
     @Test

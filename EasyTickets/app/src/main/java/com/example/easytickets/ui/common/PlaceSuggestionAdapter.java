@@ -12,6 +12,9 @@ import com.example.easytickets.domain.model.PlaceSuggestion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView adapter for Google Places autocomplete suggestions in the hotel and city forms.
+ */
 public class PlaceSuggestionAdapter extends RecyclerView.Adapter<PlaceSuggestionAdapter.ViewHolder> {
 
     public interface OnSuggestionClickedListener {

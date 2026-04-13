@@ -7,6 +7,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
+/**
+ * Retrofit definition for the subset of Ticketmaster Discovery endpoints used by the app.
+ * It exposes classification loading and event search requests only.
+ */
 public interface TicketmasterApiService {
 
     @GET("events.json")

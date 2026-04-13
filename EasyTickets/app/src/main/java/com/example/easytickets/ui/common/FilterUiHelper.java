@@ -15,6 +15,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Static helpers for translating domain filter data into chip-based UI and back again.
+ * The methods in this file render category chips, collect selections, and build {@link SearchFilters}.
+ */
 public final class FilterUiHelper {
 
     private FilterUiHelper() {

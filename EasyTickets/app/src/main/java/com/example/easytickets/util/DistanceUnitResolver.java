@@ -2,6 +2,10 @@ package com.example.easytickets.util;
 
 import java.util.Locale;
 
+/**
+ * Converts market context into the radius unit labels shown in the UI.
+ * This keeps miles-versus-kilometers logic consistent across the search forms.
+ */
 public class DistanceUnitResolver {
 
     public static final String UNIT_MILES = "miles";

@@ -10,6 +10,11 @@ import com.google.android.gms.location.Granularity;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationTokenSource;
 
+/**
+ * {@link LocationRepository} implementation backed by {@link FusedLocationProviderClient}.
+ * It first requests a current fix with permission-level granularity and then falls back to the
+ * last known location when a fresh result is unavailable.
+ */
 public class DeviceLocationRepository implements LocationRepository {
 
     private final FusedLocationProviderClient fusedLocationProviderClient;

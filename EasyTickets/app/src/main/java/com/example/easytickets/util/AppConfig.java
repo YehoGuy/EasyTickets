@@ -3,6 +3,10 @@ package com.example.easytickets.util;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Encapsulates API key configuration read from {@code BuildConfig}.
+ * It exposes validation helpers and builds the setup instructions shown when required keys are missing.
+ */
 public class AppConfig {
 
     private final String googleMapsApiKey;

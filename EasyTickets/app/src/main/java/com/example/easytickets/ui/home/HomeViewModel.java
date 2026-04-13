@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Shared ViewModel for the home flow.
+ * It loads event categories once, brokers hotel and city autocomplete/place resolution,
+ * and requests device location for the my-location path.
+ */
 public class HomeViewModel extends ViewModel {
 
     private final TicketmasterRepository ticketmasterRepository;

@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Unit tests for {@link TicketmasterQueryFactory} covering nearby and city request generation.
+ */
 public class TicketmasterQueryFactoryTest {
 
     private final TicketmasterQueryFactory queryFactory = new TicketmasterQueryFactory();

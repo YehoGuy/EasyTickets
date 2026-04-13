@@ -12,6 +12,10 @@ import com.example.easytickets.domain.model.EventSummary;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView adapter for the results bottom sheet when a marker represents one or more events.
+ * It renders compact event rows and forwards click events upstream.
+ */
 public class EventSummaryAdapter extends RecyclerView.Adapter<EventSummaryAdapter.ViewHolder> {
 
     public interface OnEventClickedListener {

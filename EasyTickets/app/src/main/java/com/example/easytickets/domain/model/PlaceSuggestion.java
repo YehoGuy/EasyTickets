@@ -2,6 +2,9 @@ package com.example.easytickets.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * Lightweight autocomplete suggestion shown while the user types a hotel or city query.
+ */
 public class PlaceSuggestion implements Serializable {
 
     private final String placeId;

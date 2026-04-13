@@ -30,6 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Home-screen child fragment for device-location searches.
+ * It collects filters, requests runtime permission when needed,
+ * and converts the resolved location into a {@link SearchRequest}.
+ */
 public class MyLocationSearchFragment extends BaseEasyTicketsFragment {
 
     private FragmentMyLocationSearchBinding binding;

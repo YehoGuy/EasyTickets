@@ -8,6 +8,10 @@ import com.example.easytickets.EasyTicketsApplication;
 import com.example.easytickets.di.AppContainer;
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * Small fragment base class that exposes shared app dependencies and snackbar helpers
+ * to UI fragments.
+ */
 public abstract class BaseEasyTicketsFragment extends Fragment {
 
     protected AppContainer getAppContainer() {

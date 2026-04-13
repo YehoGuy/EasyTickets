@@ -3,6 +3,10 @@ package com.example.easytickets.domain.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Immutable domain model describing a Ticketmaster top-level event segment used in filter chips
+ * and request building.
+ */
 public class EventCategory implements Serializable {
 
     private final String id;

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Immutable filter bundle attached to a search request.
+ * It stores the selected categories and an optional radius/unit pair for nearby searches.
+ */
 public class SearchFilters implements Serializable {
 
     private final ArrayList<EventCategory> selectedCategories;

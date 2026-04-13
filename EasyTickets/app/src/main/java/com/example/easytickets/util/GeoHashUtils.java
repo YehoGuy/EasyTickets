@@ -1,5 +1,9 @@
 package com.example.easytickets.util;
 
+/**
+ * Minimal geohash encoder used to translate latitude and longitude into Ticketmaster's
+ * {@code geoPoint} query format.
+ */
 public final class GeoHashUtils {
 
     private static final String BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";

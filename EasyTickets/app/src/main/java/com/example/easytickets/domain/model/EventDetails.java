@@ -2,6 +2,9 @@ package com.example.easytickets.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * Lightweight serializable wrapper for the selected event passed into the details screen.
+ */
 public class EventDetails implements Serializable {
 
     private final EventSummary summary;

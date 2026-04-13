@@ -7,6 +7,10 @@ import com.example.easytickets.domain.model.SearchRequest;
 
 import java.util.List;
 
+/**
+ * Repository contract for Ticketmaster-backed event and category data.
+ * Implementations hide API calling, fallback behavior, and DTO mapping from the UI layer.
+ */
 public interface TicketmasterRepository {
 
     void fetchEventCategories(RepositoryCallback<List<EventCategory>> callback);

@@ -16,6 +16,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Concrete Ticketmaster repository that executes Retrofit calls, maps DTOs into domain models,
+ * caches category data, and supplies fallback categories when the remote list is unavailable.
+ */
 public class TicketmasterRepositoryImpl implements TicketmasterRepository {
 
     private final TicketmasterApiService apiService;

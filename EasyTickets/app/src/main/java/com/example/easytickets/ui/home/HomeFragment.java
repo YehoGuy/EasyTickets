@@ -24,6 +24,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
+/**
+ * Top-level home screen that combines the decorative background map with the floating search surface.
+ * It switches between the three search forms and routes completed searches to the results screen.
+ */
 public class HomeFragment extends BaseEasyTicketsFragment implements SearchFormListener, OnMapReadyCallback {
 
     public static final String ARG_SEARCH_REQUEST = "arg_search_request";

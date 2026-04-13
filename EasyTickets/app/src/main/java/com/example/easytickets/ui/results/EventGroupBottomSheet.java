@@ -16,6 +16,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 
+/**
+ * Bottom sheet used when a results marker is tapped.
+ * It either shows a single quick-open action or a list of events sharing the selected location.
+ */
 public class EventGroupBottomSheet extends BottomSheetDialogFragment {
 
     public static final String RESULT_REQUEST_KEY = "event_group_result";

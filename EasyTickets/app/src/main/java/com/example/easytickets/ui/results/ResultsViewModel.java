@@ -14,6 +14,11 @@ import com.example.easytickets.util.EventGroupingUtils;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * ViewModel for the results screen.
+ * It runs the Ticketmaster search, groups events into marker buckets,
+ * and exposes loading, error, and empty-state UI flags.
+ */
 public class ResultsViewModel extends ViewModel {
 
     private final TicketmasterRepository ticketmasterRepository;

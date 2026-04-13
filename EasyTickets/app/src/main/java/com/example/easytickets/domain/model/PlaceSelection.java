@@ -2,6 +2,10 @@ package com.example.easytickets.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * Resolved place details returned after the user chooses a hotel or city suggestion.
+ * It carries display text plus the coordinates and market metadata required to build searches.
+ */
 public class PlaceSelection implements Serializable {
 
     private final String placeId;

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Immutable map presentation model representing one marker on the results map.
+ * A group contains the anchor location plus one or more events that share the same venue bucket.
+ */
 public class EventMapGroup implements Serializable {
 
     private final String groupId;

@@ -16,6 +16,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * {@link PlacesRepository} implementation that handles both autocomplete and place-details
+ * resolution through the Google Places SDK.
+ * The file is structured around lightweight prediction queries first and selected-place
+ * resolution second.
+ */
 public class GooglePlacesRepository implements PlacesRepository {
 
     private static final List<String> SUPPORTED_COUNTRIES = Arrays.asList("US", "CA", "MX", "AU", "NZ");

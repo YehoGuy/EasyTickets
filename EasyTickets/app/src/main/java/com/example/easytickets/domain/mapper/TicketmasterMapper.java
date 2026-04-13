@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Maps raw Ticketmaster DTOs into stable domain models consumed by the UI.
+ * It normalizes missing values, extracts top-level categories, and flattens venue and image data.
+ */
 public class TicketmasterMapper {
 
     public List<EventCategory> toEventCategories(TicketmasterResponses.ClassificationSearchResponse response) {
