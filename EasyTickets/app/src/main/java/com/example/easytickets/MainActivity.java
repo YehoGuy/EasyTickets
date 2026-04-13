@@ -1,6 +1,7 @@
 package com.example.easytickets;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +9,35 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.easytickets.databinding.ActivityMainBinding;
+import com.example.easytickets.databinding.ActivitySetupRequiredBinding;
+import com.example.easytickets.di.AppContainer;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
+        AppContainer appContainer = ((EasyTicketsApplication) getApplication()).getAppContainer();
+        if (!appContainer.getAppConfig().hasRequiredKeys()) {
+            ActivitySetupRequiredBinding binding = ActivitySetupRequiredBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            applyWindowInsets(binding.main);
+            binding.setupMessage.setText(appContainer.getAppConfig().buildSetupInstructions());
+            return;
+        }
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        applyWindowInsets(binding.main);
+    }
+
+    private void applyWindowInsets(View root) {
+        ViewCompat.setOnApplyWindowInsetsListener(root, (view, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="brand_primary">#205C56</color>
+    <color name="brand_primary_weak">#1F205C56</color>
+    <color name="brand_secondary">#A56452</color>
+    <color name="background_primary">#F5F1EB</color>
+    <color name="surface_primary">#FFFCF7</color>
+    <color name="surface_secondary">#EEF1EB</color>
+    <color name="surface_overlay">#F7FAF4</color>
+    <color name="outline_soft">#D8DDD5</color>
+    <color name="text_primary">#1E2728</color>
+    <color name="text_secondary">#667274</color>
+    <color name="text_inverse">#FFF9F0</color>
+    <color name="text_inverse_muted">#E2E8E2</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
