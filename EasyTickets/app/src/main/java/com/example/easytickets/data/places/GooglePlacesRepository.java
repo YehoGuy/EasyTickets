@@ -1,8 +1,11 @@
 package com.example.easytickets.data.places;
 
+import android.util.Log;
+
 import com.example.easytickets.data.RepositoryCallback;
 import com.example.easytickets.domain.model.PlaceSelection;
 import com.example.easytickets.domain.model.PlaceSuggestion;
+import com.google.android.gms.common.api.ApiException;
 import com.example.easytickets.util.AppConfig;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.AddressComponent;
@@ -24,6 +27,7 @@ import java.util.List;
  */
 public class GooglePlacesRepository implements PlacesRepository {
 
+    private static final String TAG = "GooglePlacesRepo";
     private static final List<String> SUPPORTED_COUNTRIES = Arrays.asList("US", "CA", "MX", "AU", "NZ");
     private static final List<String> HOTEL_TYPES = Collections.singletonList("lodging");
     private static final List<String> CITY_TYPES = Collections.singletonList("(cities)");
@@ -79,7 +83,13 @@ public class GooglePlacesRepository implements PlacesRepository {
                             extractCityName(place)
                     ));
                 })
-                .addOnFailureListener(exception -> callback.onError("Couldn't load place details. Please try again."));
+                .addOnFailureListener(exception -> {
+                    Log.e(TAG, "Place details lookup failed for placeId=" + placeId, exception);
+                    callback.onError(buildPlacesErrorMessage(
+                            "Couldn't load place details.",
+                            exception
+                    ));
+                });
     }
 
     private void searchPredictions(
@@ -116,7 +126,38 @@ public class GooglePlacesRepository implements PlacesRepository {
                     ));
                     callback.onSuccess(suggestions);
                 })
-                .addOnFailureListener(exception -> callback.onError("Couldn't search Google Places right now."));
+                .addOnFailureListener(exception -> {
+                    Log.e(TAG, "Autocomplete search failed for query=" + normalizedQuery, exception);
+                    callback.onError(buildPlacesErrorMessage(
+                            "Couldn't search Google Places right now.",
+                            exception
+                    ));
+                });
+    }
+
+    private String buildPlacesErrorMessage(String prefix, Exception exception) {
+        if (exception instanceof ApiException) {
+            ApiException apiException = (ApiException) exception;
+            String statusMessage = sanitizeStatusMessage(apiException.getStatusMessage());
+            if (!statusMessage.isEmpty()) {
+                return prefix + " " + statusMessage + " (code " + apiException.getStatusCode() + ").";
+            }
+            return prefix + " Google Places returned error code " + apiException.getStatusCode() + ".";
+        }
+
+        String message = exception == null ? "" : safe(exception.getMessage());
+        if (!message.isEmpty()) {
+            return prefix + " " + message;
+        }
+        return prefix;
+    }
+
+    private String sanitizeStatusMessage(String value) {
+        String message = safe(value);
+        if (message.endsWith(".")) {
+            return message.substring(0, message.length() - 1);
+        }
+        return message;
     }
 
     private String extractCountryCode(Place place) {

@@ -1,5 +1,7 @@
 package com.example.easytickets.data.ticketmaster;
 
+import android.util.Log;
+
 import com.example.easytickets.data.RepositoryCallback;
 import com.example.easytickets.domain.mapper.TicketmasterMapper;
 import com.example.easytickets.domain.model.EventCategory;
@@ -22,6 +24,7 @@ import retrofit2.Response;
  */
 public class TicketmasterRepositoryImpl implements TicketmasterRepository {
 
+    private static final String TAG = "TicketmasterRepo";
     private final TicketmasterApiService apiService;
     private final TicketmasterQueryFactory queryFactory;
     private final TicketmasterMapper mapper;
@@ -59,7 +62,14 @@ public class TicketmasterRepositoryImpl implements TicketmasterRepository {
                     Response<TicketmasterResponses.ClassificationSearchResponse> response
             ) {
                 if (!response.isSuccessful() || response.body() == null) {
-                    callback.onError("Couldn't load Ticketmaster event categories.");
+                    String errorBody = readErrorBody(response);
+                    Log.e(TAG, "Ticketmaster categories request failed. httpCode=" + response.code()
+                            + ", errorBody=" + errorBody);
+                    callback.onError(buildHttpErrorMessage(
+                            "Couldn't load Ticketmaster event categories.",
+                            response.code(),
+                            errorBody
+                    ));
                     return;
                 }
 
@@ -75,7 +85,11 @@ public class TicketmasterRepositoryImpl implements TicketmasterRepository {
 
             @Override
             public void onFailure(Call<TicketmasterResponses.ClassificationSearchResponse> call, Throwable throwable) {
-                callback.onError("Couldn't load Ticketmaster event categories.");
+                Log.e(TAG, "Ticketmaster categories request failed before response.", throwable);
+                callback.onError(buildNetworkErrorMessage(
+                        "Couldn't load Ticketmaster event categories.",
+                        throwable
+                ));
             }
         });
     }
@@ -95,7 +109,14 @@ public class TicketmasterRepositoryImpl implements TicketmasterRepository {
                     Response<TicketmasterResponses.EventSearchResponse> response
             ) {
                 if (!response.isSuccessful()) {
-                    callback.onError("Ticketmaster search failed. Please try again.");
+                    String errorBody = readErrorBody(response);
+                    Log.e(TAG, "Ticketmaster event search failed. httpCode=" + response.code()
+                            + ", errorBody=" + errorBody + ", query=" + query);
+                    callback.onError(buildHttpErrorMessage(
+                            "Ticketmaster search failed.",
+                            response.code(),
+                            errorBody
+                    ));
                     return;
                 }
 
@@ -105,7 +126,11 @@ public class TicketmasterRepositoryImpl implements TicketmasterRepository {
 
             @Override
             public void onFailure(Call<TicketmasterResponses.EventSearchResponse> call, Throwable throwable) {
-                callback.onError("Couldn't reach Ticketmaster. Check your connection and try again.");
+                Log.e(TAG, "Ticketmaster event search failed before response. query=" + query, throwable);
+                callback.onError(buildNetworkErrorMessage(
+                        "Couldn't reach Ticketmaster.",
+                        throwable
+                ));
             }
         });
     }
@@ -119,5 +144,36 @@ public class TicketmasterRepositoryImpl implements TicketmasterRepository {
                 new EventCategory("KZFzniwnSyZfZ7v7nn", "Film"),
                 new EventCategory("KZFzniwnSyZfZ7v7n1", "Miscellaneous")
         ));
+    }
+
+    private String buildHttpErrorMessage(String prefix, int httpCode, String errorBody) {
+        String details = safe(errorBody);
+        if (!details.isEmpty()) {
+            return prefix + " HTTP " + httpCode + ". " + details;
+        }
+        return prefix + " HTTP " + httpCode + ".";
+    }
+
+    private String buildNetworkErrorMessage(String prefix, Throwable throwable) {
+        String details = throwable == null ? "" : safe(throwable.getMessage());
+        if (!details.isEmpty()) {
+            return prefix + " " + details + " (HTTP code N/A).";
+        }
+        return prefix + " HTTP code N/A.";
+    }
+
+    private String readErrorBody(Response<?> response) {
+        if (response == null || response.errorBody() == null) {
+            return "";
+        }
+        try {
+            return safe(response.errorBody().string());
+        } catch (Exception ignored) {
+            return "";
+        }
+    }
+
+    private String safe(String value) {
+        return value == null ? "" : value.trim();
     }
 }

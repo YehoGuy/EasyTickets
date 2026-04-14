@@ -31,7 +31,6 @@ public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<List<EventCategory>> categories = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<Boolean> categoriesLoading = new MutableLiveData<>(false);
-    private final MutableLiveData<String> categoryStatusMessage = new MutableLiveData<>("");
     private final MutableLiveData<List<PlaceSuggestion>> hotelSuggestions = new MutableLiveData<>(Collections.emptyList());
     private final MutableLiveData<List<PlaceSuggestion>> citySuggestions = new MutableLiveData<>(Collections.emptyList());
     private final MutableLiveData<Boolean> hotelSearchLoading = new MutableLiveData<>(false);
@@ -64,10 +63,6 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<Boolean> getCategoriesLoading() {
         return categoriesLoading;
-    }
-
-    public LiveData<String> getCategoryStatusMessage() {
-        return categoryStatusMessage;
     }
 
     public LiveData<List<PlaceSuggestion>> getHotelSuggestions() {
@@ -250,14 +245,12 @@ public class HomeViewModel extends ViewModel {
             public void onSuccess(List<EventCategory> data) {
                 categoriesLoading.postValue(false);
                 categories.postValue(data);
-                categoryStatusMessage.postValue("");
             }
 
             @Override
             public void onError(String errorMessage) {
                 categoriesLoading.postValue(false);
                 categories.postValue(ticketmasterRepository.getFallbackCategories());
-                categoryStatusMessage.postValue("Using fallback event categories.");
                 message.postValue(errorMessage);
             }
         });

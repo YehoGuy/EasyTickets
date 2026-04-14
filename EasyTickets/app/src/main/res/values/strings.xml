@@ -6,9 +6,7 @@
     <string name="setup_card_subtitle">Create the secrets file once, then the full app UI will load.</string>
     <string name="home_header_label">EasyTickets</string>
     <string name="home_header_title">Search from where the night begins.</string>
-    <string name="home_header_subtitle">Pick a hotel, city, or your live location, then filter nearby Ticketmaster events with a cleaner step-by-step flow.</string>
     <string name="search_card_title">Start with a place</string>
-    <string name="search_card_subtitle">Switch modes below and complete one focused search form at a time.</string>
     <string name="search_tab_hotel">Hotel</string>
     <string name="search_tab_city">City</string>
     <string name="search_tab_my_location">My location</string>

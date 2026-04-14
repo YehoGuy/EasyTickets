@@ -90,15 +90,6 @@ public class HomeFragment extends BaseEasyTicketsFragment implements SearchFormL
     private void observeViewModel() {
         viewModel.getCategoriesLoading().observe(getViewLifecycleOwner(), isLoading ->
                 binding.categoryProgress.setVisibility(Boolean.TRUE.equals(isLoading) ? View.VISIBLE : View.GONE));
-
-        viewModel.getCategoryStatusMessage().observe(getViewLifecycleOwner(), message -> {
-            if (message == null || message.isEmpty()) {
-                binding.categoryStatus.setVisibility(View.GONE);
-            } else {
-                binding.categoryStatus.setVisibility(View.VISIBLE);
-                binding.categoryStatus.setText(message);
-            }
-        });
     }
 
     private void showForm(int checkedButtonId) {
