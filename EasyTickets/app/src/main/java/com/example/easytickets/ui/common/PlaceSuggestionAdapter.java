@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RecyclerView adapter for Google Places autocomplete suggestions in the hotel and city forms.
+ * RecyclerView adapter for Google Places autocomplete suggestions in the hotel search form.
  */
 public class PlaceSuggestionAdapter extends RecyclerView.Adapter<PlaceSuggestionAdapter.ViewHolder> {
 

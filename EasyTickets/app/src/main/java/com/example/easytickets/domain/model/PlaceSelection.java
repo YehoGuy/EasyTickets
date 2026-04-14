@@ -3,8 +3,8 @@ package com.example.easytickets.domain.model;
 import java.io.Serializable;
 
 /**
- * Resolved place details returned after the user chooses a hotel or city suggestion.
- * It carries display text plus the coordinates and market metadata required to build searches.
+ * Resolved place details returned after the user chooses a hotel suggestion.
+ * It carries display text plus the coordinates and country metadata required to build searches.
  */
 public class PlaceSelection implements Serializable {
 
@@ -14,7 +14,6 @@ public class PlaceSelection implements Serializable {
     private final double latitude;
     private final double longitude;
     private final String countryCode;
-    private final String cityName;
 
     public PlaceSelection(
             String placeId,
@@ -22,8 +21,7 @@ public class PlaceSelection implements Serializable {
             String address,
             double latitude,
             double longitude,
-            String countryCode,
-            String cityName
+            String countryCode
     ) {
         this.placeId = placeId == null ? "" : placeId;
         this.displayName = displayName == null ? "" : displayName;
@@ -31,7 +29,6 @@ public class PlaceSelection implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.countryCode = countryCode == null ? "" : countryCode;
-        this.cityName = cityName == null ? "" : cityName;
     }
 
     public String getPlaceId() {
@@ -56,9 +53,5 @@ public class PlaceSelection implements Serializable {
 
     public String getCountryCode() {
         return countryCode;
-    }
-
-    public String getCityName() {
-        return cityName;
     }
 }

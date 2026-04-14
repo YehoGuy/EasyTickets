@@ -13,7 +13,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.easytickets.R;
 import com.example.easytickets.databinding.FragmentHomeBinding;
-import com.example.easytickets.domain.model.SearchMode;
 import com.example.easytickets.domain.model.SearchRequest;
 import com.example.easytickets.ui.common.BaseEasyTicketsFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,11 +21,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 
 /**
  * Top-level home screen that combines the decorative background map with the floating search surface.
- * It switches between the three search forms and routes completed searches to the results screen.
+ * It hosts the hotel search form and routes completed searches to the results screen.
  */
 public class HomeFragment extends BaseEasyTicketsFragment implements SearchFormListener, OnMapReadyCallback {
 
@@ -55,7 +53,7 @@ public class HomeFragment extends BaseEasyTicketsFragment implements SearchFormL
         ).get(HomeViewModel.class);
 
         setupBackgroundMap();
-        setupModeSelector(savedInstanceState);
+        setupHotelForm();
         observeViewModel();
     }
 
@@ -71,42 +69,15 @@ public class HomeFragment extends BaseEasyTicketsFragment implements SearchFormL
         mapFragment.getMapAsync(this);
     }
 
-    private void setupModeSelector(Bundle savedInstanceState) {
-        binding.searchModeGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
-            if (!isChecked) {
-                return;
-            }
-            showForm(checkedId);
-        });
-
-        int initialSelection = binding.searchModeHotelButton.getId();
-        if (savedInstanceState != null && binding.searchModeGroup.getCheckedButtonId() != View.NO_ID) {
-            initialSelection = binding.searchModeGroup.getCheckedButtonId();
-        }
-        binding.searchModeGroup.check(initialSelection);
-        showForm(initialSelection);
+    private void setupHotelForm() {
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.search_form_container, new HotelSearchFragment(), "hotel_search")
+                .commit();
     }
 
     private void observeViewModel() {
         viewModel.getCategoriesLoading().observe(getViewLifecycleOwner(), isLoading ->
                 binding.categoryProgress.setVisibility(Boolean.TRUE.equals(isLoading) ? View.VISIBLE : View.GONE));
-    }
-
-    private void showForm(int checkedButtonId) {
-        if (checkedButtonId == R.id.search_mode_city_button) {
-            getChildFragmentManager().beginTransaction()
-                    .replace(R.id.search_form_container, new CitySearchFragment(), SearchMode.CITY.name())
-                    .commit();
-        } else if (checkedButtonId == R.id.search_mode_location_button) {
-            getChildFragmentManager().beginTransaction()
-                    .replace(R.id.search_form_container, new MyLocationSearchFragment(), SearchMode.MY_LOCATION.name())
-                    .commit();
-        } else {
-            getChildFragmentManager().beginTransaction()
-                    .replace(R.id.search_form_container, new HotelSearchFragment(), SearchMode.HOTEL.name())
-                    .commit();
-        }
-        binding.searchFormContainer.post(() -> binding.searchFormContainer.requestLayout());
     }
 
     @Override

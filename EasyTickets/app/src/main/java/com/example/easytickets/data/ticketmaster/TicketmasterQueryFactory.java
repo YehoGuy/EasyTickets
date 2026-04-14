@@ -2,7 +2,6 @@ package com.example.easytickets.data.ticketmaster;
 
 import com.example.easytickets.domain.model.EventCategory;
 import com.example.easytickets.domain.model.SearchFilters;
-import com.example.easytickets.domain.model.SearchMode;
 import com.example.easytickets.domain.model.SearchRequest;
 import com.example.easytickets.util.GeoHashUtils;
 
@@ -12,8 +11,7 @@ import java.util.Map;
 
 /**
  * Builds Ticketmaster query parameters from the normalized {@link SearchRequest} model.
- * The logic branches between city searches and nearby geoPoint searches while applying
- * category and radius filters.
+ * It builds nearby hotel geoPoint searches while applying category and radius filters.
  */
 public class TicketmasterQueryFactory {
 
@@ -24,15 +22,6 @@ public class TicketmasterQueryFactory {
         SearchFilters filters = request.getSearchFilters();
         if (filters != null && !filters.getSelectedCategories().isEmpty()) {
             query.put("segmentId", joinCategoryIds(filters.getSelectedCategories()));
-        }
-
-        if (request.getSearchMode() == SearchMode.CITY) {
-            query.put("city", request.getCityName());
-            if (!request.getCountryCode().isEmpty()) {
-                query.put("countryCode", request.getCountryCode());
-            }
-            query.put("sort", "date,asc");
-            return query;
         }
 
         query.put("geoPoint", GeoHashUtils.encode(

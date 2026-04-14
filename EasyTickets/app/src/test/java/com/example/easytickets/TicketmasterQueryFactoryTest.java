@@ -1,7 +1,6 @@
 package com.example.easytickets;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.example.easytickets.data.ticketmaster.TicketmasterQueryFactory;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Unit tests for {@link TicketmasterQueryFactory} covering nearby and city request generation.
+ * Unit tests for {@link TicketmasterQueryFactory} covering hotel nearby request generation.
  */
 public class TicketmasterQueryFactoryTest {
 
@@ -30,7 +29,6 @@ public class TicketmasterQueryFactoryTest {
                 "Hotel Example",
                 40.7505,
                 -73.9934,
-                "New York",
                 "US",
                 new SearchFilters(selectedCategories(), 25, "miles")
         );
@@ -44,27 +42,6 @@ public class TicketmasterQueryFactoryTest {
         assertEquals("US", query.get("countryCode"));
         assertTrue(query.containsKey("geoPoint"));
         assertEquals("KZFzniwnSyZfZ7v7nJ,KZFzniwnSyZfZ7v7nE", query.get("segmentId"));
-    }
-
-    @Test
-    public void buildEventSearchQuery_buildsCitySearchWithoutGeoPoint() {
-        SearchRequest request = new SearchRequest(
-                SearchMode.CITY,
-                "Tel Aviv",
-                32.0853,
-                34.7818,
-                "Tel Aviv",
-                "IL",
-                new SearchFilters(selectedCategories(), 0, "")
-        );
-
-        Map<String, String> query = queryFactory.buildEventSearchQuery(request);
-
-        assertEquals("date,asc", query.get("sort"));
-        assertEquals("Tel Aviv", query.get("city"));
-        assertEquals("IL", query.get("countryCode"));
-        assertFalse(query.containsKey("geoPoint"));
-        assertFalse(query.containsKey("radius"));
     }
 
     private List<EventCategory> selectedCategories() {

@@ -3,8 +3,6 @@ package com.example.easytickets.di;
 import android.content.Context;
 
 import com.example.easytickets.BuildConfig;
-import com.example.easytickets.data.location.DeviceLocationRepository;
-import com.example.easytickets.data.location.LocationRepository;
 import com.example.easytickets.data.places.GooglePlacesRepository;
 import com.example.easytickets.data.places.PlacesRepository;
 import com.example.easytickets.data.ticketmaster.TicketmasterApiService;
@@ -12,7 +10,6 @@ import com.example.easytickets.data.ticketmaster.TicketmasterQueryFactory;
 import com.example.easytickets.data.ticketmaster.TicketmasterRepository;
 import com.example.easytickets.data.ticketmaster.TicketmasterRepositoryImpl;
 import com.example.easytickets.util.AppConfig;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.gson.Gson;
@@ -29,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Central composition root for the app.
  * It validates configuration and constructs the shared repositories, network stack,
- * Places client, and location provider used across fragments and view models.
+ * and Places client used across fragments and view models.
  */
 public class AppContainer {
 
@@ -38,7 +35,6 @@ public class AppContainer {
     private final AppConfig appConfig;
     private final TicketmasterRepository ticketmasterRepository;
     private final PlacesRepository placesRepository;
-    private final LocationRepository locationRepository;
 
     public AppContainer(Context context) {
         Context appContext = context.getApplicationContext();
@@ -85,9 +81,6 @@ public class AppContainer {
 
         ticketmasterRepository = new TicketmasterRepositoryImpl(apiService, queryFactory, appConfig);
         placesRepository = new GooglePlacesRepository(placesClient, appConfig);
-        locationRepository = new DeviceLocationRepository(
-                LocationServices.getFusedLocationProviderClient(appContext)
-        );
     }
 
     public AppConfig getAppConfig() {
@@ -100,9 +93,5 @@ public class AppContainer {
 
     public PlacesRepository getPlacesRepository() {
         return placesRepository;
-    }
-
-    public LocationRepository getLocationRepository() {
-        return locationRepository;
     }
 }

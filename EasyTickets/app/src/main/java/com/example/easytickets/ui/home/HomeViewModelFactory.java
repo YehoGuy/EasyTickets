@@ -24,8 +24,7 @@ public class HomeViewModelFactory implements ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(HomeViewModel.class)) {
             return (T) new HomeViewModel(
                     appContainer.getTicketmasterRepository(),
-                    appContainer.getPlacesRepository(),
-                    appContainer.getLocationRepository()
+                    appContainer.getPlacesRepository()
             );
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

@@ -57,7 +57,6 @@ dependencies {
     implementation libs.okhttp.logging
     implementation libs.glide
     implementation libs.maps
-    implementation libs.location
     implementation libs.places
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit

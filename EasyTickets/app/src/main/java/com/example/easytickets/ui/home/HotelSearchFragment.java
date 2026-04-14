@@ -144,7 +144,6 @@ public class HotelSearchFragment extends BaseEasyTicketsFragment {
                     selectedPlace.getDisplayName(),
                     selectedPlace.getLatitude(),
                     selectedPlace.getLongitude(),
-                    selectedPlace.getCityName(),
                     selectedPlace.getCountryCode(),
                     filters
             );

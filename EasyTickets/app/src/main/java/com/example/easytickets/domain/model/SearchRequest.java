@@ -12,7 +12,6 @@ public class SearchRequest implements Serializable {
     private final String originLabel;
     private final double originLatitude;
     private final double originLongitude;
-    private final String cityName;
     private final String countryCode;
     private final SearchFilters searchFilters;
 
@@ -21,7 +20,6 @@ public class SearchRequest implements Serializable {
             String originLabel,
             double originLatitude,
             double originLongitude,
-            String cityName,
             String countryCode,
             SearchFilters searchFilters
     ) {
@@ -29,7 +27,6 @@ public class SearchRequest implements Serializable {
         this.originLabel = originLabel == null ? "" : originLabel;
         this.originLatitude = originLatitude;
         this.originLongitude = originLongitude;
-        this.cityName = cityName == null ? "" : cityName;
         this.countryCode = countryCode == null ? "" : countryCode;
         this.searchFilters = searchFilters;
     }
@@ -48,10 +45,6 @@ public class SearchRequest implements Serializable {
 
     public double getOriginLongitude() {
         return originLongitude;
-    }
-
-    public String getCityName() {
-        return cityName;
     }
 
     public String getCountryCode() {

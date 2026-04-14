@@ -89,52 +89,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/search_mode_group"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_l"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_card_title"
-                app:selectionRequired="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search_mode_hotel_button"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:minHeight="44dp"
-                    android:text="@string/search_tab_hotel" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search_mode_city_button"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:minHeight="44dp"
-                    android:text="@string/search_tab_city" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search_mode_location_button"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:minHeight="44dp"
-                    android:text="@string/search_tab_my_location" />
-
-            </com.google.android.material.button.MaterialButtonToggleGroup>
-
             <ProgressBar
                 android:id="@+id/category_progress"
                 style="?android:attr/progressBarStyleSmall"
@@ -143,7 +97,7 @@
                 android:layout_marginTop="@dimen/spacing_m"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_mode_group" />
+                app:layout_constraintTop_toBottomOf="@id/search_card_title" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/search_form_container"
@@ -153,7 +107,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_mode_group" />
+                app:layout_constraintTop_toBottomOf="@id/category_progress" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
